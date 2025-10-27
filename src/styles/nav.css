@@ -1,0 +1,71 @@
+.site-header {
+  padding: 20px 24px;
+  background-color: #264653;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.site-title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.site-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #f4a261;
+  font-style: italic;
+}
+
+.boton {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  font-size: 26px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navegacion {
+  display: none;
+  margin-top: 12px;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.navegacion a {
+  display: block;
+  text-decoration: none;
+  color: #e9c46a;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navegacion a:hover {
+  color: #f4a261;
+}
+
+.navegacion.active {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .boton {
+    display: none;
+  }
+
+  .navegacion {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .navegacion a {
+    display: inline-block;
+    padding: 0;
+  }
+}
