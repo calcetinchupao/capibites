@@ -1,7 +1,18 @@
 // src/data/data.js
-// Base de datos simulada para Capibites
+// Base de datos simulada para Capibites con persistencia en localStorage
 
-let productos = [
+// --- Utilidades para manejar localStorage ---
+const guardarEnLocalStorage = (clave, datos) => {
+  localStorage.setItem(clave, JSON.stringify(datos));
+};
+
+const cargarDeLocalStorage = (clave, valorPorDefecto) => {
+  const datos = localStorage.getItem(clave);
+  return datos ? JSON.parse(datos) : valorPorDefecto;
+};
+
+// --- Datos iniciales por defecto ---
+let productos = cargarDeLocalStorage("productos", [
   {
     id: 1,
     nombre: "Hamburguesa Clásica",
@@ -90,9 +101,9 @@ let productos = [
     descuento: 25,
     stock: 10
   }
-];
+]);
 
-let usuarios = [
+let usuarios = cargarDeLocalStorage("usuarios", [
   {
     id: 1,
     nombre: "Admin",
@@ -102,166 +113,117 @@ let usuarios = [
     direccion: "Paine, Chile",
     telefono: "+56912345678"
   }
-];
+]);
 
-let pedidos = [];
+let pedidos = cargarDeLocalStorage("pedidos", []);
 
-let nextProductoId = 9;
-let nextUsuarioId = 2;
-let nextPedidoId = 1;
+let nextProductoId = productos.length + 1;
+let nextUsuarioId = usuarios.length + 1;
+let nextPedidoId = pedidos.length + 1;
 
 // ============= CRUD PRODUCTOS =============
+export const obtenerProductos = () => [...productos];
 
-export const obtenerProductos = () => {
-  return [...productos];
-};
+export const obtenerProductoPorId = (id) => productos.find(p => p.id === parseInt(id));
 
-export const obtenerProductoPorId = (id) => {
-  return productos.find(p => p.id === parseInt(id));
-};
+export const obtenerProductosPorCategoria = (categoria) =>
+  productos.filter(p => p.categoria === categoria);
 
-export const obtenerProductosPorCategoria = (categoria) => {
-  return productos.filter(p => p.categoria === categoria);
-};
-
-export const obtenerProductosEnOferta = () => {
-  return productos.filter(p => p.enOferta);
-};
+export const obtenerProductosEnOferta = () =>
+  productos.filter(p => p.enOferta);
 
 export const crearProducto = (producto) => {
-  const nuevoProducto = {
+  const nuevo = {
     id: nextProductoId++,
     ...producto,
     enOferta: producto.enOferta || false,
     descuento: producto.descuento || 0,
     stock: producto.stock || 0
   };
-  productos.push(nuevoProducto);
-  return nuevoProducto;
+  productos.push(nuevo);
+  guardarEnLocalStorage("productos", productos);
+  return nuevo;
 };
 
-export const actualizarProducto = (id, datosActualizados) => {
+export const actualizarProducto = (id, datos) => {
   const index = productos.findIndex(p => p.id === parseInt(id));
   if (index !== -1) {
-    productos[index] = { ...productos[index], ...datosActualizados };
+    productos[index] = { ...productos[index], ...datos };
+    guardarEnLocalStorage("productos", productos);
     return productos[index];
   }
   return null;
 };
 
 export const eliminarProducto = (id) => {
-  const index = productos.findIndex(p => p.id === parseInt(id));
-  if (index !== -1) {
-    const eliminado = productos.splice(index, 1);
-    return eliminado[0];
-  }
-  return null;
+  productos = productos.filter(p => p.id !== parseInt(id));
+  guardarEnLocalStorage("productos", productos);
 };
 
 // ============= CRUD USUARIOS =============
+export const obtenerUsuarios = () => [...usuarios];
 
-export const obtenerUsuarios = () => {
-  return [...usuarios];
-};
-
-export const obtenerUsuarioPorEmail = (email) => {
-  return usuarios.find(u => u.email === email);
-};
+export const obtenerUsuarioPorEmail = (email) =>
+  usuarios.find(u => u.email === email);
 
 export const crearUsuario = (usuario) => {
-  const nuevoUsuario = {
-    id: nextUsuarioId++,
-    ...usuario,
-    rol: usuario.rol || "cliente"
-  };
-  usuarios.push(nuevoUsuario);
-  return nuevoUsuario;
-};
-
-export const actualizarUsuario = (id, datosActualizados) => {
-  const index = usuarios.findIndex(u => u.id === parseInt(id));
-  if (index !== -1) {
-    usuarios[index] = { ...usuarios[index], ...datosActualizados };
-    return usuarios[index];
-  }
-  return null;
-};
-
-export const eliminarUsuario = (id) => {
-  const index = usuarios.findIndex(u => u.id === parseInt(id));
-  if (index !== -1) {
-    const eliminado = usuarios.splice(index, 1);
-    return eliminado[0];
-  }
-  return null;
+  const nuevo = { id: nextUsuarioId++, ...usuario, rol: usuario.rol || "cliente" };
+  usuarios.push(nuevo);
+  guardarEnLocalStorage("usuarios", usuarios);
+  return nuevo;
 };
 
 export const validarLogin = (email, password) => {
-  const usuario = usuarios.find(u => u.email === email && u.password === password);
-  return usuario || null;
+  const user = usuarios.find(u => u.email === email && u.password === password);
+  return user || null;
 };
 
 // ============= CRUD PEDIDOS =============
+export const obtenerPedidos = () => [...pedidos];
 
-export const obtenerPedidos = () => {
-  return [...pedidos];
-};
-
-export const obtenerPedidoPorId = (id) => {
-  return pedidos.find(p => p.id === parseInt(id));
-};
-
-export const obtenerPedidosPorUsuario = (usuarioId) => {
-  return pedidos.filter(p => p.usuarioId === parseInt(usuarioId));
-};
+export const obtenerPedidoPorId = (id) => pedidos.find(p => p.id === parseInt(id));
 
 export const crearPedido = (pedido) => {
-  const nuevoPedido = {
+  const nuevo = {
     id: nextPedidoId++,
     ...pedido,
     fecha: new Date().toISOString(),
     estado: "pendiente"
   };
-  pedidos.push(nuevoPedido);
-  return nuevoPedido;
+  pedidos.push(nuevo);
+  guardarEnLocalStorage("pedidos", pedidos);
+  return nuevo;
 };
 
-export const actualizarPedido = (id, datosActualizados) => {
+export const actualizarPedido = (id, datos) => {
   const index = pedidos.findIndex(p => p.id === parseInt(id));
   if (index !== -1) {
-    pedidos[index] = { ...pedidos[index], ...datosActualizados };
+    pedidos[index] = { ...pedidos[index], ...datos };
+    guardarEnLocalStorage("pedidos", pedidos);
     return pedidos[index];
   }
   return null;
 };
 
 export const eliminarPedido = (id) => {
-  const index = pedidos.findIndex(p => p.id === parseInt(id));
-  if (index !== -1) {
-    const eliminado = pedidos.splice(index, 1);
-    return eliminado[0];
-  }
-  return null;
+  pedidos = pedidos.filter(p => p.id !== parseInt(id));
+  guardarEnLocalStorage("pedidos", pedidos);
 };
 
 // ============= UTILIDADES =============
+export const obtenerCategorias = () =>
+  [...new Set(productos.map(p => p.categoria))];
 
-export const obtenerCategorias = () => {
-  const categorias = [...new Set(productos.map(p => p.categoria))];
-  return categorias;
-};
-
-export const calcularPrecioConDescuento = (producto) => {
-  if (producto.enOferta && producto.descuento > 0) {
-    return Math.round(producto.precio * (1 - producto.descuento / 100));
-  }
-  return producto.precio;
-};
+export const calcularPrecioConDescuento = (producto) =>
+  producto.enOferta && producto.descuento > 0
+    ? Math.round(producto.precio * (1 - producto.descuento / 100))
+    : producto.precio;
 
 export const buscarProductos = (termino) => {
-  const terminoLower = termino.toLowerCase();
-  return productos.filter(p => 
-    p.nombre.toLowerCase().includes(terminoLower) ||
-    p.descripcion.toLowerCase().includes(terminoLower)
+  const t = termino.toLowerCase();
+  return productos.filter(
+    (p) =>
+      p.nombre.toLowerCase().includes(t) ||
+      p.descripcion.toLowerCase().includes(t)
   );
 };

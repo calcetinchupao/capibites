@@ -1,50 +1,54 @@
-import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../styles/nav.css";
 
 export default function Layout() {
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [usuario, setUsuario] = useState(null);
+  const navigate = useNavigate();
 
-  const toggleMenu = () => setMenuAbierto(!menuAbierto);
-  const cerrarMenu = () => setMenuAbierto(false);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("usuarioActual"));
+    setUsuario(user);
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("usuarioActual");
+    setUsuario(null);
+    navigate("/");
+  };
 
   return (
     <>
       <header className="site-header">
-        <div className="header-content">
-          <h1 className="site-title">Capibites</h1>
-          <p className="site-subtitle">Tu tienda ideal para ir a comer en familia 🍔</p>
-        </div>
-
-        <button className="boton-menu" onClick={toggleMenu}>
-          ☰
-        </button>
+        <h1 className="site-title">Capibites</h1>
+        <p className="site-subtitle">Tu tienda ideal para ir a comer en familia</p>
+        <button className="boton" onClick={() => setMenuAbierto(!menuAbierto)}>☰</button>
 
         <nav className={`navegacion ${menuAbierto ? "active" : ""}`}>
-          <Link to="/" onClick={cerrarMenu}>Inicio</Link>
-          <Link to="/productos" onClick={cerrarMenu}>Productos</Link>
-          <Link to="/categorias" onClick={cerrarMenu}>Categorías</Link>
-          <Link to="/contacto" onClick={cerrarMenu}>Contacto</Link>
-          <Link to="/nosotros" onClick={cerrarMenu}>Nosotros</Link>
-          <Link to="/blogs" onClick={cerrarMenu}>Blogs</Link>
-          <Link to="/iniciar-sesion" onClick={cerrarMenu}>Iniciar Sesión</Link>
-          <Link to="/registrarse" onClick={cerrarMenu}>Registrarse</Link>
+          <Link to="/" onClick={() => setMenuAbierto(false)}>Inicio</Link>
+          <Link to="/productos" onClick={() => setMenuAbierto(false)}>Productos</Link>
+          <Link to="/categorias" onClick={() => setMenuAbierto(false)}>Categorías</Link>
+          <Link to="/contacto" onClick={() => setMenuAbierto(false)}>Contacto</Link>
+          <Link to="/carrito" onClick={() => setMenuAbierto(false)}>🛒 Carrito</Link>
 
-          {/* 🛒 Enlace al carrito */}
-          <Link to="/carrito" onClick={cerrarMenu} className="carrito-link">
-            🛒 Carrito
-          </Link>
+          {usuario ? (
+            <>
+              <span className="ms-2">👋 {usuario.nombre}</span>
+              <button onClick={logout} className="btn btn-link text-danger">Cerrar sesión</button>
+            </>
+          ) : (
+            <>
+              <Link to="/iniciar-sesion" onClick={() => setMenuAbierto(false)}>Iniciar sesión</Link>
+              <Link to="/registrarse" onClick={() => setMenuAbierto(false)}>Registrarse</Link>
+            </>
+          )}
         </nav>
       </header>
 
       <main>
-        {/* Aquí se renderizan las páginas hijas */}
         <Outlet />
       </main>
-
-      <footer className="site-footer">
-        <p>© {new Date().getFullYear()} Capibites — Todos los derechos reservados.</p>
-      </footer>
     </>
   );
 }

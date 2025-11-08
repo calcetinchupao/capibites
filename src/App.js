@@ -12,6 +12,8 @@ import Nosotros from "./pages/Nosotros";
 import Blogs from "./pages/Blogs";
 import IniciarSesion from "./pages/IniciarSesion";
 import Registrarse from "./pages/Registrarse";
+import Checkout from "./pages/Checkout";
+
 
 // Admin
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -35,6 +37,7 @@ function App() {
             <Route path="blogs" element={<Blogs />} />
             <Route path="iniciar-sesion" element={<IniciarSesion />} />
             <Route path="registrarse" element={<Registrarse />} />
+            <Route path="checkout" element={<Checkout />} />
           </Route>
 
           {/* Rutas del admin (sin layout) */}

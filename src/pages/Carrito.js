@@ -1,76 +1,67 @@
 import React from "react";
-import { useCart } from "../context/CartContext";
-import { calcularPrecioConDescuento } from "../data/data";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext"; // <-- usa el hook
+import "../styles/carrito.css";
 
 const Carrito = () => {
-  const { cartItems, removeFromCart, clearCart } = useCart();
+   const { cart, removeFromCart, clearCart } = useCart(); 
 
-  // Calcular total del carrito
-  const total = cartItems.reduce((acc, item) => {
-    const precioFinal = calcularPrecioConDescuento(item);
-    return acc + precioFinal * item.cantidad;
-  }, 0);
+  // Si el carrito no existe o está vacío
+  if (!cart || cart.length === 0) {
+    return (
+      <div className="carrito-vacio">
+        <h2>Tu carrito está vacío 🛒</h2>
+        <p>Agrega productos desde la página de productos.</p>
+        <Link to="/productos" className="btn-volver">
+          Ir a Productos
+        </Link>
+      </div>
+    );
+  }
+
+  // Calcular el total
+  const total = cart.reduce(
+    (acc, item) => acc + item.precio * item.cantidad,
+    0
+  );
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">🛍️ Carrito de Compras</h2>
+    <div className="carrito-page">
+      <h1>🛍️ Tu Carrito de Compras</h1>
 
-      {cartItems.length === 0 ? (
-        <div className="alert alert-info">
-          Tu carrito está vacío. Agrega algunos productos para comenzar 😋
-        </div>
-      ) : (
-        <>
-          <ul className="list-group mb-4">
-            {cartItems.map((item, index) => (
-              <li
-                key={index}
-                className="list-group-item d-flex justify-content-between align-items-center"
-              >
-                <div className="d-flex align-items-center gap-3">
-                  <img
-                    src={item.imagen}
-                    alt={item.nombre}
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      objectFit: "cover",
-                      borderRadius: "8px",
-                    }}
-                  />
-                  <div>
-                    <h6 className="mb-1">{item.nombre}</h6>
-                    <small>
-                      Cantidad: {item.cantidad} | Precio: $
-                      {calcularPrecioConDescuento(item).toLocaleString("es-CL")}
-                    </small>
-                  </div>
-                </div>
-
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => removeFromCart(item.id)}
-                >
-                  ❌ Eliminar
-                </button>
-              </li>
-            ))}
-          </ul>
-
-          <div className="d-flex justify-content-between align-items-center mb-3">
-            <h5>
-              Total:{" "}
-              <strong>${Math.round(total).toLocaleString("es-CL")}</strong>
-            </h5>
-            <div>
-              <button className="btn btn-secondary me-2" onClick={clearCart}>
-                Vaciar Carrito
-              </button>
-              <button className="btn btn-success">Proceder al Pago 💳</button>
+      <ul className="carrito-lista">
+        {cart.map((item) => (
+          <li key={item.id} className="carrito-item">
+            <img src={item.imagen} alt={item.nombre} />
+            <div className="carrito-detalle">
+              <h3>{item.nombre}</h3>
+              <p>Cantidad: {item.cantidad}</p>
+              <p>Precio: ${item.precio.toLocaleString("es-CL")}</p>
+              <p>
+                Subtotal: ${(item.precio * item.cantidad).toLocaleString("es-CL")}
+              </p>
             </div>
-          </div>
-        </>
-      )}
+            <button
+              className="btn-eliminar"
+              onClick={() => removeFromCart(item.id)}
+            >
+              ❌ Eliminar
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <div className="carrito-total">
+        <h2>Total: ${total.toLocaleString("es-CL")}</h2>
+        <div className="carrito-acciones">
+          <button className="btn-vaciar" onClick={clearCart}>
+            Vaciar carrito
+          </button>
+          <Link to="/checkout" className="btn-comprar">
+            Finalizar compra
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
