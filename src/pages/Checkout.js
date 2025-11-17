@@ -50,19 +50,18 @@ const Checkout = () => {
   };
 
   return (
-    <div className="container my-5">
-      <h2 className="text-center mb-4 fw-bold">🧾 Finalizar Compra</h2>
+    <div className="container" style={{ paddingTop: 'var(--space-6)', paddingBottom: 'var(--space-6)' }}>
+      <h2 style={{ textAlign: 'center', marginBottom: 'var(--space-6)', fontSize: 'var(--fs-xl)' }}>🧾 Finalizar Compra</h2>
 
-      <div className="row">
-        {/* Columna izquierda - Formulario */}
-        <div className="col-md-6">
-          <h4 className="mb-3">Datos de Envío</h4>
+      <div className="grid grid--2">
+        <section>
+          <h4 style={{ marginBottom: 'var(--space-3)' }}>Datos de Envío</h4>
           <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label">Nombre completo *</label>
+            <div className="field">
+              <label className="label">Nombre completo *</label>
               <input
                 type="text"
-                className="form-control"
+                className="input"
                 name="nombre"
                 value={formData.nombre}
                 onChange={handleChange}
@@ -70,11 +69,11 @@ const Checkout = () => {
               />
             </div>
 
-            <div className="mb-3">
-              <label className="form-label">Correo electrónico *</label>
+            <div className="field">
+              <label className="label">Correo electrónico *</label>
               <input
                 type="email"
-                className="form-control"
+                className="input"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -82,22 +81,22 @@ const Checkout = () => {
               />
             </div>
 
-            <div className="mb-3">
-              <label className="form-label">Teléfono</label>
+            <div className="field">
+              <label className="label">Teléfono</label>
               <input
                 type="tel"
-                className="form-control"
+                className="input"
                 name="telefono"
                 value={formData.telefono}
                 onChange={handleChange}
               />
             </div>
 
-            <div className="mb-3">
-              <label className="form-label">Dirección *</label>
+            <div className="field">
+              <label className="label">Dirección *</label>
               <input
                 type="text"
-                className="form-control"
+                className="input"
                 name="direccion"
                 value={formData.direccion}
                 onChange={handleChange}
@@ -105,21 +104,21 @@ const Checkout = () => {
               />
             </div>
 
-            <div className="mb-3">
-              <label className="form-label">Comuna</label>
+            <div className="field">
+              <label className="label">Comuna</label>
               <input
                 type="text"
-                className="form-control"
+                className="input"
                 name="comuna"
                 value={formData.comuna}
                 onChange={handleChange}
               />
             </div>
 
-            <div className="mb-3">
-              <label className="form-label">Notas adicionales</label>
+            <div className="field">
+              <label className="label">Notas adicionales</label>
               <textarea
-                className="form-control"
+                className="input"
                 rows="3"
                 name="notasAdicionales"
                 value={formData.notasAdicionales}
@@ -127,41 +126,37 @@ const Checkout = () => {
               ></textarea>
             </div>
 
-            <button type="submit" className="btn btn-primary w-100 mt-3">
+            <button type="submit" className="btn btn--primary" style={{ width: '100%', marginTop: 'var(--space-3)' }}>
               🛍️ Confirmar Pedido
             </button>
           </form>
-        </div>
+        </section>
 
-        {/* Columna derecha - Resumen */}
-        <div className="col-md-6">
-          <h4 className="mb-3">Resumen del Pedido</h4>
+        <section>
+          <h4 style={{ marginBottom: 'var(--space-3)' }}>Resumen del Pedido</h4>
           {cart.length > 0 ? (
-            <ul className="list-group mb-3">
-              {cart.map((item) => (
-                <li
-                  key={item.id}
-                  className="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    <strong>{item.nombre}</strong>
-                    <br />
-                    <small>x {item.cantidad}</small>
-                  </div>
-                  <span>${(item.precio * item.cantidad).toLocaleString("es-CL")}</span>
+            <div className="card">
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                {cart.map((item) => (
+                  <li key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px solid var(--color-border)`, paddingBottom: 'var(--space-3)' }}>
+                    <div>
+                      <strong>{item.nombre}</strong>
+                      <br />
+                      <small>x {item.cantidad}</small>
+                    </div>
+                    <span>${(item.precio * item.cantidad).toLocaleString("es-CL")}</span>
+                  </li>
+                ))}
+                <li style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700 }}>
+                  <span>Total:</span>
+                  <span>${calcularTotal().toLocaleString("es-CL")}</span>
                 </li>
-              ))}
-              <li className="list-group-item d-flex justify-content-between">
-                <strong>Total:</strong>
-                <span className="fw-bold">
-                  ${calcularTotal().toLocaleString("es-CL")}
-                </span>
-              </li>
-            </ul>
+              </ul>
+            </div>
           ) : (
-            <p>No hay productos en tu carrito.</p>
+            <p style={{ color: 'var(--color-muted)' }}>No hay productos en tu carrito.</p>
           )}
-        </div>
+        </section>
       </div>
     </div>
   );

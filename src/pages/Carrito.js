@@ -9,11 +9,11 @@ const Carrito = () => {
   // Si el carrito no existe o está vacío
   if (!cart || cart.length === 0) {
     return (
-      <div className="carrito-vacio">
+      <div className="container carrito-vacio" style={{ paddingTop: 'var(--space-6)', paddingBottom: 'var(--space-6)' }}>
         <h2>Tu carrito está vacío 🛒</h2>
         <p>Agrega productos desde la página de productos.</p>
-        <Link to="/productos" className="btn-volver">
-          Ir a Productos
+        <Link to="/productos" className="btn btn--primary">
+          Ir a productos
         </Link>
       </div>
     );
@@ -26,8 +26,8 @@ const Carrito = () => {
   );
 
   return (
-    <div className="carrito-page">
-      <h1>🛍️ Tu Carrito de Compras</h1>
+    <div className="container carrito-page" style={{ paddingTop: 'var(--space-6)', paddingBottom: 'var(--space-6)' }}>
+      <h1 style={{ fontSize: 'var(--fs-xl)', marginBottom: 'var(--space-5)' }}>🛍️ Tu Carrito de Compras</h1>
 
       <ul className="carrito-lista">
         {cart.map((item) => (
@@ -42,8 +42,9 @@ const Carrito = () => {
               </p>
             </div>
             <button
-              className="btn-eliminar"
+              className="btn btn--danger"
               onClick={() => removeFromCart(item.id)}
+              aria-label={`Eliminar ${item.nombre} del carrito`}
             >
               ❌ Eliminar
             </button>
@@ -52,12 +53,12 @@ const Carrito = () => {
       </ul>
 
       <div className="carrito-total">
-        <h2>Total: ${total.toLocaleString("es-CL")}</h2>
+        <h2 style={{ fontSize: 'var(--fs-lg)' }}>Total: ${total.toLocaleString("es-CL")}</h2>
         <div className="carrito-acciones">
-          <button className="btn-vaciar" onClick={clearCart}>
+          <button className="btn" onClick={clearCart}>
             Vaciar carrito
           </button>
-          <Link to="/checkout" className="btn-comprar">
+          <Link to="/checkout" className="btn btn--primary">
             Finalizar compra
           </Link>
         </div>

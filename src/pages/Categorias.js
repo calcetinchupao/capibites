@@ -51,12 +51,12 @@ function Categorias() {
 
     return (
         <div className="categorias-page">
-            <div className="categorias-header">
+            <div className="categorias-header container">
                 <h1>Nuestras Categorías</h1>
                 <p>Explora todos nuestros productos organizados por categoría</p>
             </div>
 
-            <div className="categorias-grid">
+            <div className="categorias-grid container">
                 {categorias.map((categoria) => (
                     <article
                         key={categoria.nombre}

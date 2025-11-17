@@ -4,7 +4,7 @@ import "../styles/home.css";
 function Home() {
   return (
     <div className="home-page">
-      <section className="principio">
+      <section className="principio container">
         <h1>Bienvenido a Capibites</h1>
         <p>Comida para ti o tu familia al mejor precio</p>
         <img src="/img/logo.png" alt="logo" className="logo" />
@@ -19,12 +19,12 @@ function Home() {
           allowFullScreen
         ></iframe>
 
-        <a href="/productos" className="btn">Ver menú</a>
+        <a href="/productos" className="btn btn--primary">Ver menú</a>
       </section>
 
-      <section className="destacados">
+      <section className="destacados container">
         <h2>Nuestros favoritos</h2>
-        <div className="cards">
+        <div className="grid grid--3">
           <article className="card">
             <img src="/img/smash-burger-que-es.jpg" alt="Hamburguesa" />
             <h3>Hamburguesas</h3>
@@ -40,7 +40,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="ubicacion">
+      <section className="ubicacion container">
         <h2>Dónde estamos</h2>
         <ul>
           <li>Paine</li>

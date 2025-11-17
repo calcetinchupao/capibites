@@ -69,3 +69,57 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # proyecto_react
+
+## Sistema de diseño (UI/UX)
+
+Este proyecto incorpora un sistema de diseño unificado con tokens, tipografía y componentes reutilizables para asegurar consistencia visual, accesibilidad y mantenibilidad.
+
+### Tokens de diseño
+
+Los tokens están definidos en `src/index.css` dentro de `:root`.
+
+- Colores: `--color-bg`, `--color-surface`, `--color-text`, `--color-muted`, `--color-primary`, `--color-primary-contrast`, `--color-accent`, `--color-border`, `--color-success`, `--color-warning`, `--color-danger`.
+- Espaciado: `--space-1` … `--space-6`.
+- Tipografía: `--fs-xs`, `--fs-sm`, `--fs-md`, `--fs-lg`, `--fs-xl`, `--fs-2xl`.
+- Bordes y sombras: `--radius-sm`, `--radius-md`, `--radius-lg`, `--shadow-sm`, `--shadow-md`, `--shadow-lg`.
+
+Actualiza la paleta modificando estos tokens para propagar cambios a toda la interfaz.
+
+### Tipografía
+
+Se utiliza la fuente `Inter` desde Google Fonts y un stack de sistema como respaldo. El `body` define `line-height` y suavizado de fuentes para legibilidad.
+
+### Componentes y utilidades globales
+
+Disponibles en `src/index.css`:
+
+- `container`: contenedor responsivo con ancho máximo y padding horizontal.
+- `btn` y `btn--primary`: botones con estados `hover`/`active` y foco accesible.
+- `card`: superficies con sombra, radio y transición sutil.
+- `grid` y `grid--3`: rejilla responsiva (3/2/1 columnas).
+- `sr-only`: texto solo para lectores de pantalla.
+
+### Accesibilidad (WCAG)
+
+- Enlaces y botones tienen foco visible con `:focus-visible`.
+- Paleta con contraste alto para texto y elementos interactivos.
+- Animaciones respetan `prefers-reduced-motion`.
+- Landmarks semánticos: `header`, `nav[aria-label="Principal"]`, `main`.
+
+### Navbar
+
+- Código en `src/components/Layout.js` y estilos en `src/styles/nav.css`.
+- Mobile: botón `menu-toggle` con `aria-expanded` y `aria-controls`.
+- Desktop: navegación horizontal con acciones a la derecha.
+
+### Buenas prácticas de uso
+
+- Usa tokens en nuevos estilos: `color: var(--color-text)`, `background: var(--color-surface)`, etc.
+- Reutiliza `btn`, `card` y `grid` en nuevas pantallas.
+- Evita colores y tamaños hardcodeados; usa variables.
+- Define contenido alternativo (`alt`) en imágenes y etiquetas accesibles en botones.
+
+### Mantenimiento
+
+- Cambios globales: editar tokens en `src/index.css`.
+- Iconografía: preferir SVG inline en componentes para consistencia y accesibilidad.

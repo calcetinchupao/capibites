@@ -1,71 +1,105 @@
 .site-header {
-  padding: 20px 24px;
-  background-color: #264653;
-  color: #fff;
-  position: relative;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
 }
 
 .site-title {
   margin: 0;
-  font-size: 32px;
-  font-weight: bold;
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--color-text);
 }
 
 .site-subtitle {
   margin: 0;
-  font-size: 14px;
-  color: #f4a261;
-  font-style: italic;
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
 }
 
-.boton {
-  position: absolute;
-  right: 24px;
-  top: 24px;
-  font-size: 26px;
-  background: transparent;
-  border: none;
-  color: #fff;
-  cursor: pointer;
+.menu-toggle {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  display: inline-flex;
 }
 
 .navegacion {
   display: none;
-  margin-top: 12px;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.navegacion a {
-  display: block;
-  text-decoration: none;
-  color: #e9c46a;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.navegacion a:hover {
-  color: #f4a261;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
 }
 
 .navegacion.active {
+  display: block;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
   display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-actions {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--color-border);
 }
 
 @media (min-width: 768px) {
-  .boton {
+  .menu-toggle {
     display: none;
   }
 
   .navegacion {
+    position: static;
     display: flex;
-    flex-direction: row;
-    gap: 20px;
+    align-items: center;
+    gap: var(--space-5);
+    box-shadow: none;
+    border-top: none;
   }
 
-  .navegacion a {
-    display: inline-block;
+  .nav-list {
+    flex-direction: row;
     padding: 0;
+  }
+
+  .nav-actions {
+    padding: 0;
+    border-top: none;
   }
 }

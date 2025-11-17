@@ -27,3 +27,13 @@ button {
   transition: background-color 0.3s;
 }
 button:hover { background-color: #f4a261; }
+.contacto-page {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.contacto-page h1 {
+  color: var(--color-text);
+}
+
+.contacto-page .label { color: var(--color-text); }

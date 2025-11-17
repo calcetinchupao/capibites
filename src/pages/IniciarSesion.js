@@ -28,41 +28,40 @@ const IniciarSesion = () => {
   };
 
   return (
-    <div className="container my-5" style={{ maxWidth: "500px" }}>
-      <h2 className="text-center mb-4 fw-bold">🔐 Iniciar Sesión</h2>
+    <div className="container" style={{ maxWidth: "520px", paddingTop: 'var(--space-6)', paddingBottom: 'var(--space-6)' }}>
+      <h2 style={{ textAlign: 'center', marginBottom: 'var(--space-5)', fontSize: 'var(--fs-xl)' }}>🔐 Iniciar Sesión</h2>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Correo electrónico</label>
+        <div className="field">
+          <label className="label">Correo electrónico</label>
           <input
             type="email"
-            className="form-control"
+            className="input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Contraseña</label>
+        <div className="field">
+          <label className="label">Contraseña</label>
           <input
             type="password"
-            className="form-control"
+            className="input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
-        <button type="submit" className="btn btn-primary w-100 mt-3">
+        <button type="submit" className="btn btn--primary" style={{ width: '100%', marginTop: 'var(--space-3)' }}>
           Iniciar Sesión
         </button>
 
-        <p className="text-center mt-3">
+        <p style={{ textAlign: 'center', marginTop: 'var(--space-3)' }}>
           ¿No tienes cuenta?{" "}
           <span
-            className="text-primary"
-            style={{ cursor: "pointer" }}
+            style={{ color: 'var(--color-primary)', cursor: 'pointer' }}
             onClick={() => navigate("/registrarse")}
           >
             Regístrate aquí

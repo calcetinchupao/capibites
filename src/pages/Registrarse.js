@@ -33,15 +33,15 @@ const Registrarse = () => {
   };
 
   return (
-    <div className="container my-5" style={{ maxWidth: "500px" }}>
-      <h2 className="text-center mb-4 fw-bold">📝 Crear Cuenta</h2>
+    <div className="container" style={{ maxWidth: "520px", paddingTop: 'var(--space-6)', paddingBottom: 'var(--space-6)' }}>
+      <h2 style={{ textAlign: 'center', marginBottom: 'var(--space-5)', fontSize: 'var(--fs-xl)' }}>📝 Crear Cuenta</h2>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Nombre completo</label>
+        <div className="field">
+          <label className="label">Nombre completo</label>
           <input
             type="text"
-            className="form-control"
+            className="input"
             name="nombre"
             value={form.nombre}
             onChange={handleChange}
@@ -49,11 +49,11 @@ const Registrarse = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Correo electrónico</label>
+        <div className="field">
+          <label className="label">Correo electrónico</label>
           <input
             type="email"
-            className="form-control"
+            className="input"
             name="email"
             value={form.email}
             onChange={handleChange}
@@ -61,11 +61,11 @@ const Registrarse = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Contraseña</label>
+        <div className="field">
+          <label className="label">Contraseña</label>
           <input
             type="password"
-            className="form-control"
+            className="input"
             name="password"
             value={form.password}
             onChange={handleChange}
@@ -73,37 +73,36 @@ const Registrarse = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Dirección</label>
+        <div className="field">
+          <label className="label">Dirección</label>
           <input
             type="text"
-            className="form-control"
+            className="input"
             name="direccion"
             value={form.direccion}
             onChange={handleChange}
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Teléfono</label>
+        <div className="field">
+          <label className="label">Teléfono</label>
           <input
             type="tel"
-            className="form-control"
+            className="input"
             name="telefono"
             value={form.telefono}
             onChange={handleChange}
           />
         </div>
 
-        <button type="submit" className="btn btn-success w-100 mt-3">
+        <button type="submit" className="btn btn--primary" style={{ width: '100%', marginTop: 'var(--space-3)' }}>
           Registrarme
         </button>
 
-        <p className="text-center mt-3">
+        <p style={{ textAlign: 'center', marginTop: 'var(--space-3)' }}>
           ¿Ya tienes cuenta?{" "}
           <span
-            className="text-primary"
-            style={{ cursor: "pointer" }}
+            style={{ color: 'var(--color-primary)', cursor: 'pointer' }}
             onClick={() => navigate("/iniciar-sesion")}
           >
             Inicia sesión
