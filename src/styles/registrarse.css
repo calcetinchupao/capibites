@@ -1,0 +1,92 @@
+.register-page {
+  padding: 24px;
+  background-color: #fef9f4;
+  font-family: 'Arial', sans-serif;
+  color: #264653;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.register-page h1 {
+  color: #2a9d8f;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 12px;
+  background-color: #e76f51;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #f4a261;
+}
+
+.register-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fef9f4;
+  padding: 24px;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 24px;
+}
+
+.register-title {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.register-title h2 {
+  margin: 0 0 8px 0;
+  color: #000;
+}
+
+.register-title p {
+  margin: 0;
+  color: #000;
+  font-size: 14px;
+}
+
+.register-card .form-label { color: #000; }
+.register-card p { color: #000; }
+.register-card .form-control { color: #000; }
+
+.register-btn {
+  width: 200px;
+  display: inline-block;
+  margin: 0;
+}
+
+.register-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+}

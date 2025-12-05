@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "nombre": "Hamburguesa Clásica",
+    "categoria": "hamburguesas",
+    "precio": 5990,
+    "descripcion": "Hamburguesa con carne, lechuga, tomate y queso",
+    "imagen": "/img/smash-burger-que-es.jpg",
+    "enOferta": false,
+    "descuento": 0,
+    "stock": 20
+  },
+  {
+    "id": 2,
+    "nombre": "Hamburguesa Completa",
+    "categoria": "hamburguesas",
+    "precio": 7990,
+    "descripcion": "Hamburguesa con carne, huevo, palta, tomate y mayonesa",
+    "imagen": "/img/smash-burger-que-es.jpg",
+    "enOferta": true,
+    "descuento": 15,
+    "stock": 15
+  },
+  {
+    "id": 3,
+    "nombre": "Papas Fritas Medianas",
+    "categoria": "acompañamientos",
+    "precio": 2990,
+    "descripcion": "Porción mediana de papas fritas crocantes",
+    "imagen": "/img/papas-fritas-saludables-1080x550-1-1200x720.jpg",
+    "enOferta": false,
+    "descuento": 0,
+    "stock": 50
+  },
+  {
+    "id": 4,
+    "nombre": "Papas Fritas Grandes",
+    "categoria": "acompañamientos",
+    "precio": 3990,
+    "descripcion": "Porción grande de papas fritas crocantes",
+    "imagen": "/img/papas-fritas-saludables-1080x550-1-1200x720.jpg",
+    "enOferta": true,
+    "descuento": 10,
+    "stock": 40
+  },
+  {
+    "id": 5,
+    "nombre": "Completo Italiano",
+    "categoria": "completos",
+    "precio": 3490,
+    "descripcion": "Vienesa con palta, tomate y mayonesa",
+    "imagen": "/img/Foto_1.jpeg",
+    "enOferta": false,
+    "descuento": 0,
+    "stock": 25
+  },
+  {
+    "id": 6,
+    "nombre": "Completo Dinámico",
+    "categoria": "completos",
+    "precio": 3990,
+    "descripcion": "Vienesa con chucrut, tomate y mayo-ketchup",
+    "imagen": "/img/Foto_1.jpeg",
+    "enOferta": true,
+    "descuento": 20,
+    "stock": 18
+  },
+  {
+    "id": 7,
+    "nombre": "Bebida 500ml",
+    "categoria": "bebidas",
+    "precio": 1990,
+    "descripcion": "Bebida gaseosa de 500ml",
+    "imagen": "/img/bebida.jpg",
+    "enOferta": false,
+    "descuento": 0,
+    "stock": 100
+  },
+  {
+    "id": 8,
+    "nombre": "Combo Familiar",
+    "categoria": "combos",
+    "precio": 19990,
+    "descripcion": "4 hamburguesas + 2 papas grandes + 4 bebidas",
+    "imagen": "/img/combo.jpg",
+    "enOferta": true,
+    "descuento": 25,
+    "stock": 10
+  }
+]

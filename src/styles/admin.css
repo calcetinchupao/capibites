@@ -1,0 +1,144 @@
+/* src/styles/admin.css */
+
+.admin-header {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 16px 24px;
+}
+
+.stat-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-icon { font-size: 24px; }
+.stat-info h3 { margin: 0; font-size: 28px; font-weight: 700; }
+.stat-info p { margin: 0; color: var(--color-text-muted); }
+
+.quick-access { padding: 8px 24px 24px; }
+
+.access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.access-card {
+  text-decoration: none;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+}
+
+.access-card:hover { outline: 2px solid rgba(19,99,255,0.5); }
+.access-card:focus-visible { outline: 2px solid rgba(19,99,255,0.6); outline-offset: 2px; }
+
+/* Pedidos */
+.pedido-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  margin: 12px 24px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+}
+
+.pedido-header { display: flex; justify-content: space-between; align-items: center; }
+
+.badge-estado { padding: 6px 10px; border-radius: var(--radius-sm); color: #fff; font-weight: 700; }
+
+.estado-pendiente { background-color: var(--warning-500); }
+.estado-preparando { background-color: var(--primary-400); }
+.estado-enviado { background-color: var(--primary-600); }
+.estado-entregado { background-color: var(--success-500); }
+.estado-cancelado { background-color: var(--danger-500); }
+
+.admin-form-page { padding: 24px; }
+
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+
+.full-width { grid-column: 1 / -1; }
+
+.error { border: 1px solid var(--danger-500); }
+
+.error-mensaje { color: var(--danger-500); font-size: 12px; }
+
+.imagen-preview { max-width: 140px; margin-top: 10px; border-radius: var(--radius-sm); }
+
+.btn-guardar, .btn-cancelar {
+  padding: 10px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-guardar { background-color: var(--success-500); }
+
+.btn-cancelar { background-color: #64748b; text-decoration: none; text-align: center; }
+
+.btn-guardar:focus-visible,
+.btn-cancelar:focus-visible,
+.btn-toggle:focus-visible,
+.btn-editar:focus-visible,
+.btn-eliminar:focus-visible,
+.btn-nuevo:focus-visible,
+.btn-volver:focus-visible { outline: 2px solid rgba(19,99,255,0.6); outline-offset: 2px; }
+
+/* Tabla admin */
+.admin-tabla-container { padding: 0 24px 24px; }
+.admin-tabla { width: 100%; border-collapse: collapse; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+.admin-tabla th, .admin-tabla td { padding: 12px; border-bottom: 1px solid var(--color-border); text-align: left; }
+.admin-tabla thead th { background: rgba(255,255,255,0.04); font-weight: 600; }
+.tabla-imagen { width: 56px; height: 56px; border-radius: var(--radius-sm); object-fit: cover; }
+.badge-categoria { background: rgba(19,99,255,0.12); color: var(--primary-300); padding: 4px 8px; border-radius: var(--radius-sm); font-weight: 600; }
+.tabla-descuento { color: var(--danger-500); font-weight: 700; }
+.stock-bajo { color: var(--warning-500); font-weight: 700; }
+.stock-ok { color: var(--success-500); font-weight: 700; }
+.btn-toggle { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); padding: 6px 10px; border-radius: var(--radius-sm); }
+.btn-toggle.activo { outline: 2px solid rgba(34,197,94,0.5); }
+.btn-editar, .btn-eliminar { background: transparent; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 6px 8px; }
+.btn-editar { color: var(--primary-400); }
+.btn-eliminar { color: var(--danger-500); }
+.btn-nuevo { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-500); color: #fff; border: none; border-radius: var(--radius-sm); padding: 8px 12px; text-decoration: none; font-weight: 700; }
+.admin-filtros { display: flex; gap: 12px; padding: 16px 24px; flex-wrap: wrap; }
+.admin-busqueda, .admin-select { background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text); border-radius: var(--radius-sm); padding: 8px 10px; }
+.admin-footer { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; color: var(--color-text-muted); }
+.btn-volver { color: var(--primary-300); text-decoration: none; }
+.total-productos, .total-pedidos { margin: 0; }
+
+/* Admin shell */
+.admin-shell { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+.admin-sidebar { background: var(--color-surface); border-right: 1px solid var(--color-border); padding: 16px; }
+.admin-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; margin-bottom: 12px; }
+.admin-nav { display: grid; gap: 6px; }
+.admin-nav a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius-sm); color: var(--color-text); text-decoration: none; }
+.admin-nav a[aria-current="page"], .admin-nav a:hover { background: rgba(19,99,255,0.12); color: var(--color-text); }
+.admin-nav a:focus-visible { outline: 2px solid rgba(19,99,255,0.6); outline-offset: 2px; }
+.admin-main { overflow: auto; }
+@media (max-width: 900px) {
+  .admin-shell { grid-template-columns: 1fr; }
+  .admin-sidebar { position: sticky; top: 0; z-index: 5; display: flex; gap: 8px; align-items: center; }
+  .admin-nav { grid-auto-flow: column; overflow: auto; }
+}
+/* productos en pedidos */
+.pedidos-lista .productos-resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+.pedidos-lista .producto-item { display: flex; gap: 8px; align-items: center; }
+.pedidos-lista .producto-item img { width: 64px; height: 64px; object-fit: cover; border-radius: var(--radius-sm); }
+@media (max-width: 600px) { .pedidos-lista .producto-item img { width: 56px; height: 56px; } }

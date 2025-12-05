@@ -1,0 +1,12 @@
+.nosotros-page {
+  padding: 24px;
+  background-color: #fef9f4;
+  color: #264653;
+  font-family: 'Arial', sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.nosotros-page h1 { color: #2a9d8f; margin-bottom: 16px; }
+.nosotros-page p { margin-bottom: 12px; font-size: 16px; }

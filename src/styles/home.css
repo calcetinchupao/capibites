@@ -1,0 +1,51 @@
+.home-page {
+  padding: 24px;
+  background-color: #fef9f4;
+  color: #264653;
+  font-family: 'Arial', sans-serif;
+}
+
+.principio {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.principio h1 { color: #e76f51; font-size: 36px; }
+.principio p { font-size: 18px; margin: 12px 0; color: #555; }
+.principio .logo { display: block; max-width: 150px; margin: 8px auto 12px; }
+.principio iframe { display: block; max-width: 100%; margin: 12px auto; }
+.principio .btn { display: inline-block; margin-top: 12px; }
+
+.btn {
+  display: inline-block;
+  background-color: #e76f51;
+  color: #fff;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+.btn:hover { background-color: #f4a261; }
+
+.destacados h2 { color: #2a9d8f; margin-bottom: 20px; text-align: center; }
+.cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card {
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 200px;
+  text-align: center;
+}
+.card img { width: 100%; border-radius: 8px; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+.ubicacion { margin-top: 40px; text-align: center; }
+.ubicacion h2 { color: #2a9d8f; margin-bottom: 12px; }
+.ubicacion ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 16px; }
